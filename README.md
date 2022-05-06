@@ -30,19 +30,19 @@ To run the setup scripts PowerShell is required.
 
 ### Quickstart
 
-A [detailed walkthrough](wiki) of the entire process is available.
+A [detailed walkthrough](https://github.com/Azure-Samples/locutus/wiki) of the entire process is available.
 Some instructions basic for getting everything kicked off:
 
 1. Clone the repo
-2. [Azure Machine Learning Infrastructure Setup](wiki)
+2. [Azure Machine Learning Infrastructure Setup](https://github.com/Azure-Samples/locutus/wiki)
 ```
 ./provision.ps1 -name <YOUR_APP_NAME> -location <LOCATION|i.e. westus2>
 ```
-3. [Experimentation Notebooks](wiki/Notebooks)
-4. [AzureML Components and Pipelines for finetuning GPT-2](wiki/Finetuning)
-5. [Managed Inference](wiki/Managed-Inference)
-6. [GitHub Actions for ML Component CI/CD](wiki/Component-MLOps)
-7. [Responsible AI Dashboard](wiki/RAI-Dashboard)
+3. [Experimentation Notebooks](https://github.com/Azure-Samples/locutus/wiki/Notebooks)
+4. [AzureML Components and Pipelines for finetuning GPT-2](https://github.com/Azure-Samples/locutus/wiki/Finetuning)
+5. [Managed Inference](https://github.com/Azure-Samples/locutus/wiki/Managed-Inference)
+6. [GitHub Actions for ML Component CI/CD](https://github.com/Azure-Samples/locutus/wiki/Component-MLOps)
+7. [Responsible AI Dashboard](https://github.com/Azure-Samples/locutus/wiki/RAI-Dashboard)
 
 
 ## Resources
