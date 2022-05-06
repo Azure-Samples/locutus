@@ -1,0 +1,12 @@
+__pycache__/
+.venv/
+model*/
+.cache/
+*raw.txt
+test*/
+temp*/
+mlruns/
+data-processed/
+.outputs/
+.pytest_cache/
+.azure/

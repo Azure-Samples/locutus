@@ -1,13 +1,11 @@
-## [project-title] Changelog
+## Locutus Changelog
 
-<a name="x.y.z"></a>
-# x.y.z (yyyy-mm-dd)
+<a name="0.1.0"></a>
+# 0.1.0 (2022-05-25)
 
 *Features*
-* ...
+* Azure Machine Learning Infrastructure Setup
+* Experimentation Notebooks
+* AzureML Components and Pipelines
+* GitHub Actions for Component CI/CD
 
-*Bug Fixes*
-* ...
-
-*Breaking Changes*
-* ...

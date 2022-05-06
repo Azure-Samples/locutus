@@ -1,0 +1,12 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+# invoke completions (Ctrl+Space, Cmd+Space) to see the list of models available
+model: azureml:model-gpt2:18
+code_configuration:
+  code: "../"
+  scoring_script: score.py
+# invoke completions (Ctrl+Space, Cmd+Space) to see the list of environments available
+environment: azureml:hf-transformers-inference:2
+instance_type: Standard_NC6s_v3
+name: blue
+endpoint_name: homer-endpoint
+instance_count: 2

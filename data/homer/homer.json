@@ -1,0 +1,29 @@
+[
+    {
+        "title": "The Iliad, by Homer",
+        "source": "6130-0.txt",
+        "start": 4133,
+        "end": 23285,
+        "ignore": {
+            "startswith": [
+                "[Illustration:",
+                "BOOK",
+                "ARGUMENT"
+            ],
+            "isupper": true
+        },
+        "replace": {
+            "\\[\\d+\\]": ""
+        }
+    },
+    {
+        "title": "The Odyssey, by Homer",
+        "source": "pg1727.txt",
+        "start": 740,
+        "end": 10833,
+        "ignore": {
+            "startswith": "BOOK",
+            "isupper": true
+        }
+    }
+]

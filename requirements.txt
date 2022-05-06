@@ -1,0 +1,4 @@
+torch
+transformers
+sklearn 
+datasets >= 1.8.0

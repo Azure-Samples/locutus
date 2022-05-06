@@ -1,0 +1,31 @@
+name: Path_Checker
+display_name: Generic Path Checker
+version: 1
+type: command
+description: Generic Path Checker, more goodness
+tags: {category: NLP, contact: seth.juarez@microsoft.com, type: Processing}
+inputs:
+  path1: 
+    type: path
+    description: Path 1
+  path2: 
+    type: path
+    description: Path 2
+  path3: 
+    type: path
+    description: Path 3
+  path4: 
+    type: path
+    description: Path 4
+  path5: 
+    type: path
+    description: Path 5
+code: pathy.py
+environment: azureml:base-hf-transformer-train:4
+command: >-
+  python pathy.py
+  --path1 ${{inputs.path1}}
+  --path2 ${{inputs.path2}}
+  --path3 ${{inputs.path3}}
+  --path4 ${{inputs.path4}}
+  --path5 ${{inputs.path5}}

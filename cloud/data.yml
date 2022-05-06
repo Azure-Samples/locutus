@@ -1,0 +1,5 @@
+$schema: https://azuremlschemas.azureedge.net/latest/dataset.schema.json
+version: 4
+name: dataset-homer
+description: Homer dataset.
+path: ../data/

@@ -1,0 +1,67 @@
+name: MLOps for Components
+
+on:
+  workflow_dispatch:
+         
+  push:
+    branches:
+      - main
+    paths:
+      - 'components/**'
+
+env:
+  APP_NAME: rocksie
+
+jobs:
+  components:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2.3.3
+      with:
+        fetch-depth: 2
+
+    - name: add az ml extension
+      run: |
+        az extension add -n ml -y
+
+    - name: azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_TOKEN}}
+
+    - name: set aml defaults
+      run: |
+          az config set defaults.workspace=${{secrets.AML_WORKSPACE}}
+          az config set defaults.group=${{secrets.AML_RG}}
+
+    - name: Update Modified Components
+      run: |
+        declare -a COMPONENTS
+
+        ITEMS=$(git diff HEAD HEAD~ --name-only | grep "^components.*py\|^components.*yml")
+
+        echo Changes: $ITEMS
+
+        for ITEM in $ITEMS; do 
+            # check if there's a yml def
+            FILE="${ITEM%.*}.yml"
+            echo Checking if $FILE exists
+            if [ -f $FILE ]; then
+                # get component name
+                NAME=$(head -n 1 $FILE | sed 's/name:\s//')
+                # if we haven't already seen this component
+                if [[ ! " ${COMPONENTS[*]} " =~ " ${NAME} " ]]; then
+                    # update component
+                    COMPONENTS+=($NAME)
+                    echo Checking latest $NAME version
+                    LAST_VERSION=$(az ml component list --name $NAME --query "max([].version.to_number(@))" | tr -d "\r")
+                    if [ -z "$LAST_VERSION" ]; then
+                        LAST_VERSION=0
+                    fi
+                    echo az ml component create --file ${ITEM%.*}.yml --version $((LAST_VERSION+1))
+                    az ml component create --file ${ITEM%.*}.yml --version $((LAST_VERSION+1))
+                fi
+            fi
+        done

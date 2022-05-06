@@ -1,0 +1,26 @@
+name: HF_Transformer_models
+display_name: HuggingFace Transformer Model
+version: 24
+type: command
+description: This component downloads the current HuggingFace Transformer models for consumption in downstream tasks.
+tags: {category: HuggingFace, contact: seth.juarez@microsoft.com, type: Transformers}
+inputs:
+  model_name: 
+    type: string
+    description: The model checkpoint for weights initialization.
+    enum: [albert,bart,beit,bert,bert-generation,big_bird,bigbird_pegasus,blenderbot,blenderbot-small,camembert,canine,clip,convbert,convnext,ctrl,data2vec-audio,data2vec-text,deberta,deberta-v2,deit,detr,distilbert,dpr,electra,encoder-decoder,flaubert,fnet,fsmt,funnel,gpt2,gpt_neo,gptj,hubert,ibert,imagegpt,layoutlm,layoutlmv2,led,longformer,luke,lxmert,m2m_100,marian,maskformer,mbart,megatron-bert,mobilebert,mpnet,mt5,nystromformer,openai-gpt,pegasus,perceiver,plbart,poolformer,prophetnet,qdqbert,rag,realm,reformer,rembert,retribert,roberta,roformer,segformer,sew,sew-d,speech-encoder-decoder,speech_to_text,speech_to_text_2,splinter,squeezebert,swin,t5,tapas,transfo-xl,trocr,unispeech,unispeech-sat,vilt,vision-encoder-decoder,vision-text-dual-encoder,visual_bert,vit,vit_mae,wav2vec2,wavlm,xglm,xlm,xlm-prophetnet,xlm-roberta,xlm-roberta-xl,xlnet,yoso]
+outputs:
+  weights:
+    type: uri_folder
+  tokenizer:
+    type: uri_folder
+  config:
+    type: uri_folder
+code: huggingface.py
+environment: azureml:base-hf-transformer-train:5
+command: >-
+  python huggingface.py 
+  --model_name ${{inputs.model_name}} 
+  --weights_output ${{outputs.weights}}
+  --tokenizer_output ${{outputs.tokenizer}}
+  --config_output ${{outputs.config}}

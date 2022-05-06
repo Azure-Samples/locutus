@@ -1,0 +1,57 @@
+$schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
+
+display_name: Hugging Face GPT2 Finetune - from YAML
+description: Register a GPT2 model finetuned with Homer books.
+type: pipeline
+experiment_name: homer-pipeline
+
+compute: azureml:nc24rs-v3-gpu-cluster
+
+inputs:
+  homer_dataset:
+    path: azureml:dataset-homer:4
+  huggingface_model_name: gpt2
+  azureml_model_name: model-gpt2
+
+jobs:
+  process:
+    type: command
+    component: azureml:Text_Processor@latest
+    inputs:    
+      source: ${{parent.inputs.homer_dataset}}
+    outputs:
+      training_output:
+      validation_output:
+  
+  huggingface:
+    type: command
+    component: azureml:HF_Transformer_models@latest
+    inputs:
+      model_name: ${{parent.inputs.huggingface_model_name}}
+    outputs:
+      weights:
+      tokenizer:
+      config:
+
+  finetune-ptca:
+    type: command
+    component: azureml:GPT2_Finetuning_PTCA@latest
+    inputs:
+      weights_path: ${{parent.jobs.huggingface.outputs.weights}}
+      tokenizer_path: ${{parent.jobs.huggingface.outputs.tokenizer}}
+      config_path: ${{parent.jobs.huggingface.outputs.config}}
+      train_path: ${{parent.jobs.process.outputs.training_output}}
+      validation_path: ${{parent.jobs.process.outputs.validation_output}}
+    outputs:
+      weights_output:
+      tokenizer_output:
+      config_output:
+
+  register-model:
+    type: command
+    component: azureml:Register_GPT2_Model@latest
+    inputs:
+      weights_input_path: ${{parent.jobs.finetune-ptca.outputs.weights_output}} 
+      tokenizer_input_path: ${{parent.jobs.finetune-ptca.outputs.tokenizer_output}}
+      config_input_path: ${{parent.jobs.finetune-ptca.outputs.config_output}}
+      model_name: ${{parent.inputs.azureml_model_name}}

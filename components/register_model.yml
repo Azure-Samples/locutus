@@ -1,0 +1,27 @@
+name: Register_GPT2_Model
+display_name: Register GPT2 Model
+version: 46
+type: command
+description: Registers a GPT2 model in Azure ML
+tags: {contact: bstollnitz@microsoft.com}
+inputs:
+  weights_input_path: 
+    type: uri_folder
+    description: Finetuned GPT2 model.
+  tokenizer_input_path:
+    type: uri_folder
+    description: Finetuned tokenizer for model.
+  config_input_path:
+    type: uri_folder
+    description: Finetuned model configuration.
+  model_name:
+    type: string
+    description: Name of Azure ML model.
+code: register_model.py
+environment: azureml:base-hf-transformer-train:5
+command: >-
+  python register_model.py 
+  --weights_input_path ${{inputs.weights_input_path}}
+  --tokenizer_input_path ${{inputs.tokenizer_input_path}}
+  --config_input_path ${{inputs.config_input_path}}
+  --model_name ${{inputs.model_name}}

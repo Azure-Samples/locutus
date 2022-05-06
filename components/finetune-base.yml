@@ -1,0 +1,66 @@
+name: GPT2_Finetuning_Base
+display_name: GPT2 Finetuning Base
+version: 19
+type: command
+description: GPT2 Model Finetuning Task with Base Image
+tags: {category: LLM, contact: jambaykinley@microsoft.com, type: GPT2}
+inputs:
+  weights_path: 
+    type: uri_folder
+    description: The model checkpoint for weights initialization.
+  tokenizer_path:
+    type: uri_folder
+    description: Pretrained tokenizer name or path if not from model_name.
+  config_path: 
+    type: uri_folder
+    description: Pretrained GPT2 model configuration.
+  train_path: 
+    type: uri_folder
+    description: Directory containing pre-processed training data.
+  validation_path: 
+    type: uri_folder
+    description: Directory containing pre-processed validation data.
+    default: Empty
+  block_size: 
+    type: integer
+    description: Block size for text in each training example.
+    default: 512
+  batch_size: 
+    type: integer
+    description: Batch size per step on each device.
+    default: 9
+  num_train_epochs: 
+    type: integer
+    description: Number of training epochs.
+    default: 20
+  fp16: 
+    type: boolean
+    description: Use mixed precision.
+    default: true
+outputs:
+  weights_output:
+    type: uri_folder
+  tokenizer_output:
+    type: uri_folder
+  config_output:
+    type: uri_folder
+code: finetune.py
+environment: azureml:base-hf-transformer-train:5
+distribution:
+  type: pytorch
+  process_count_per_instance: 4
+command: >-
+  python finetune.py 
+  --model_path ${{inputs.weights_path}} 
+  --tokenizer_path ${{inputs.tokenizer_path}}
+  --config_path ${{inputs.config_path}}
+  --train_path ${{inputs.train_path}} 
+  --validation_path ${{inputs.validation_path}} 
+  --block_size ${{inputs.block_size}}
+  --batch_size ${{inputs.batch_size}}
+  --num_train_epochs ${{inputs.num_train_epochs}}
+  --fp16 ${{inputs.fp16}}
+  --model_output ${{outputs.weights_output}}
+  --tokenizer_output ${{outputs.tokenizer_output}} 
+  --config_output ${{outputs.config_output}}
+  --custom_hf

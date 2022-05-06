@@ -1,0 +1,27 @@
+name: Text_Processor
+display_name: Generic Text Processor
+version: 33
+type: command
+description: Generic text processor for downstream NLP tasks, used for Project Guttenberg books
+tags: {category: NLP, contact: seth.juarez@microsoft.com, type: Processing}
+inputs:
+  source: 
+    type: path
+    description: Text Dataset Description used for finetuning tasks
+  split:
+    type: integer
+    description: Train/Val split (larger value of split, 100-split used as training)
+    default: 80
+outputs:
+  training_output:
+    type: uri_folder
+  validation_output:
+    type: uri_folder
+code: process.py
+environment: azureml:base-hf-transformer-train:5
+command: >-
+  python process.py
+  --source ${{inputs.source}}
+  --split ${{inputs.split}}
+  --training_output ${{outputs.training_output}}
+  --validation_output ${{outputs.validation_output}}
