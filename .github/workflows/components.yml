@@ -2,15 +2,10 @@ name: MLOps for Components
 
 on:
   workflow_dispatch:
-         
-  push:
     branches:
       - main
     paths:
       - 'components/**'
-
-env:
-  APP_NAME: rocksie
 
 jobs:
   components:

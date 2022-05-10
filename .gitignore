@@ -10,3 +10,4 @@ data-processed/
 .outputs/
 .pytest_cache/
 .azure/
+*.zip
