@@ -79,12 +79,12 @@ resource computeCluster 'Microsoft.MachineLearningServices/workspaces/computes@2
     properties: {
       remoteLoginPortPublicAccess: 'NotSpecified'
       scaleSettings: {
-        maxNodeCount: 1
+        maxNodeCount: 2
         minNodeCount: 0
         nodeIdleTimeBeforeScaleDown: 'PT120S'
       }
       vmPriority: 'Dedicated'
-      vmSize: 'Standard_NC24'
+      vmSize: 'Standard_NC24rs_v3'
     }
   }
 }
