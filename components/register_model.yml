@@ -1,4 +1,4 @@
-name: Register_GPT2_Model
+name: register_gpt2_model
 display_name: Register GPT2 Model
 version: 46
 type: command

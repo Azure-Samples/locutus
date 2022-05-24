@@ -1,4 +1,4 @@
-name: HF_Transformer_models
+name: hf_transformer_models
 display_name: HuggingFace Transformer Model
 version: 24
 type: command

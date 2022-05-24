@@ -1,4 +1,4 @@
-name: Path_Checker
+name: path_checker
 display_name: Generic Path Checker
 version: 1
 type: command

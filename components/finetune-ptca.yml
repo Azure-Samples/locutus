@@ -1,4 +1,4 @@
-name: GPT2_Finetuning_PTCA
+name: gpt2_finetuning_ptca
 display_name: GPT2 Finetuning PTCA
 version: 18
 type: command

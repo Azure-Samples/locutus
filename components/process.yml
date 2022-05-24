@@ -1,4 +1,4 @@
-name: Text_Processor
+name: text_processor
 display_name: Generic Text Processor
 version: 33
 type: command
@@ -25,4 +25,3 @@ command: >-
   --split ${{inputs.split}}
   --training_output ${{outputs.training_output}}
   --validation_output ${{outputs.validation_output}}
-

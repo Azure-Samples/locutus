@@ -1,4 +1,4 @@
-name: GPT2_Finetuning_Base
+name: gpt2_finetuning_base
 display_name: GPT2 Finetuning Base
 version: 19
 type: command
