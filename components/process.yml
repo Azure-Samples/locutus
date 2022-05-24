@@ -25,3 +25,4 @@ command: >-
   --split ${{inputs.split}}
   --training_output ${{outputs.training_output}}
   --validation_output ${{outputs.validation_output}}
+
