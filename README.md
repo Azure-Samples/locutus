@@ -23,10 +23,13 @@ together as an end-to-end exercise. These include:
 
 Generally it is easier to run these exercises in the cloud (given that part
 of the exercise is creating custom environments). If you want to run these
-things locally you need to have either a virtual or conda environment that
+things locally you need to have either a virtual or [conda](https://docs.conda.io/en/latest/) environment that
 supports PyTorch. 
 
-To run the setup scripts PowerShell is required.
+Other requirements are:
+* An Azure subscription that you have the `Owner` Role to create resources.
+* [PowerShell v5.0+](https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.2)
+* [Azure Command-Line Interface (az-cli) v2.36.0+](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 
 ### Quickstart
 
@@ -47,8 +50,4 @@ Some instructions basic for getting everything kicked off:
 
 ## Resources
 
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...
+* [Start with an Azure free account](https://azure.microsoft.com/en-in/free/)
