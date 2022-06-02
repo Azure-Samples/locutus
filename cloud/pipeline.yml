@@ -33,7 +33,7 @@ jobs:
       tokenizer:
       config:
 
-  finetune-ptca:
+  finetune_ptca:
     type: command
     component: azureml:GPT2_Finetuning_PTCA@latest
     inputs:
@@ -47,11 +47,11 @@ jobs:
       tokenizer_output:
       config_output:
 
-  register-model:
+  register_model:
     type: command
     component: azureml:Register_GPT2_Model@latest
     inputs:
-      weights_input_path: ${{parent.jobs.finetune-ptca.outputs.weights_output}} 
-      tokenizer_input_path: ${{parent.jobs.finetune-ptca.outputs.tokenizer_output}}
-      config_input_path: ${{parent.jobs.finetune-ptca.outputs.config_output}}
+      weights_input_path: ${{parent.jobs.finetune_ptca.outputs.weights_output}} 
+      tokenizer_input_path: ${{parent.jobs.finetune_ptca.outputs.tokenizer_output}}
+      config_input_path: ${{parent.jobs.finetune_ptca.outputs.config_output}}
       model_name: ${{parent.inputs.azureml_model_name}}
