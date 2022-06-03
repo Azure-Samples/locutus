@@ -1,3 +1,5 @@
+# Copyright 2022 (c) Microsoft Corporation.
+# Licensed under the MIT license.
 # clean model folder
 if(Test-Path ./model) { Remove-Item -Path ./model -recurse -force }
 New-Item -Path ./model -ItemType Directory
