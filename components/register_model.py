@@ -1,3 +1,5 @@
+# Copyright 2022 (c) Microsoft Corporation.
+# Licensed under the MIT license.
 from azureml.core import Workspace
 from azureml.core.run import Run
 from azureml.core.model import Model
