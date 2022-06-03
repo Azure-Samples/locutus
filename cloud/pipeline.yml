@@ -16,7 +16,7 @@ inputs:
 jobs:
   process:
     type: command
-    component: azureml:Text_Processor@latest
+    component: azureml:text_processor@latest
     inputs:    
       source: ${{parent.inputs.homer_dataset}}
     outputs:
@@ -25,7 +25,7 @@ jobs:
   
   huggingface:
     type: command
-    component: azureml:HF_Transformer_models@latest
+    component: azureml:hf_transformer_models@latest
     inputs:
       model_name: ${{parent.inputs.huggingface_model_name}}
     outputs:
@@ -35,7 +35,7 @@ jobs:
 
   finetune-ptca:
     type: command
-    component: azureml:GPT2_Finetuning_PTCA@latest
+    component: azureml:gpt2_finetuning_ptca@latest
     inputs:
       weights_path: ${{parent.jobs.huggingface.outputs.weights}}
       tokenizer_path: ${{parent.jobs.huggingface.outputs.tokenizer}}
@@ -49,7 +49,7 @@ jobs:
 
   register-model:
     type: command
-    component: azureml:Register_GPT2_Model@latest
+    component: azureml:register_gpt2_model@latest
     inputs:
       weights_input_path: ${{parent.jobs.finetune-ptca.outputs.weights_output}} 
       tokenizer_input_path: ${{parent.jobs.finetune-ptca.outputs.tokenizer_output}}
