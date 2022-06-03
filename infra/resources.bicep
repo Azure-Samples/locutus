@@ -60,7 +60,7 @@ resource computeInstance 'Microsoft.MachineLearningServices/workspaces/computes@
     computeType: 'ComputeInstance'
     disableLocalAuth: true
     properties: {
-      vmSize: 'Standard_NC6'
+      vmSize: 'Standard_NC6s_v3'
       applicationSharingPolicy: 'Personal'
       sshSettings: {
         sshPublicAccess:'Disabled'
